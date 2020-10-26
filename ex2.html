@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let x = +prompt("Enter number: ");
+    let f1 = 0;
+    let f2 = 1;
+    let f3 = 1;
+
+    function isFibonacci(x) {
+        if (x < 0) {
+            return false;
+        } else if (x < 4) {
+            return true;
+        }
+        while (f3 < x) {
+            f1 = f2;
+            f2 = f3;
+            f3 = f1 + f2;
+        }
+        if (x === f3){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    console.log(isFibonacci(x));
+
+</script>
+</body>
+</html>

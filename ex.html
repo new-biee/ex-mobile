@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Mobile.js"></script>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div class="mobile">
+    <h1 id="iphone-name">Iphone</h1>
+    <h3 id="iphone-battery">100</h3>
+    <textarea name="inbox" id="iphone-inbox" cols="30" rows="10" placeholder="Inbox"></textarea>
+    <textarea name="inbox" id="iphone-outbox" cols="30" rows="10" placeholder="Outbox"></textarea>
+    <input type="text" id="iphone-msg" oninput="writeMsg(iphone,this.value)" placeholder="write message here...">
+    <button onclick="sendMess(iphone,nokia)">Send</button>
+</div>
+
+<div class="mobile">
+    <h1 id="nokia-name">Nokia</h1>
+    <h3 id="nokia-battery">100</h3>
+    <textarea name="inbox" id="nokia-inbox" cols="30" rows="10" placeholder="Inbox"></textarea>
+    <textarea name="inbox" id="nokia-outbox" cols="30" rows="10" placeholder="Outbox"></textarea>
+    <input type="text" id="nokia-msg" oninput="writeMsg(nokia,this.value)" placeholder="write message here...">
+    <button onclick="sendMess(nokia,iphone)">Send</button>
+</div>
+
+<script>
+    let iphone = new Mobile('iphone');
+    let nokia = new Mobile('nokia');
+
+    function display(mobile) {
+        document.getElementById(mobile.name + '-name').innerHTML = mobile.name;
+        document.getElementById(mobile.name + '-battery').innerHTML = mobile.battery;
+        document.getElementById(mobile.name + '-inbox').innerHTML = mobile.inbox;
+        document.getElementById(mobile.name + '-outbox').innerHTML = mobile.outbox;
+    }
+
+    function showAll() {
+        display(iphone);
+        display(nokia);
+    }
+
+    function writeMsg(mobile, msg) {
+        mobile.writeMsg(msg);
+    }
+
+    function sendMess(mobile1, mobile2) {
+        mobile1.sendMsg(mobile2);
+        clearInput(mobile1);
+        showAll();
+    }
+
+    function clearInput(mobile) {
+        document.getElementById(mobile.name + '-msg').value = '';
+    }
+    showAll();
+
+</script>
+</body>
+</html>
